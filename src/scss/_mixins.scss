@@ -22,3 +22,12 @@
     cursor: pointer;
   }
 }
+
+@mixin input_style_primary {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $text-color-primary-light-theme;
+  font-size: $font-size-small; // 18px
+  width: 100%;
+}

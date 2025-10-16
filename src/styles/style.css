@@ -167,7 +167,7 @@ li {
   background-color: transparent;
   color: #000000;
   font-size: 18px;
-  width: 60%;
+  width: 100%;
 }
 .login_page .btn {
   background-color: #1976d2;
@@ -253,7 +253,7 @@ li {
   background-color: transparent;
   color: #000000;
   font-size: 18px;
-  width: 60%;
+  width: 100%;
 }
 .signup_page .btn {
   background-color: #1976d2;
