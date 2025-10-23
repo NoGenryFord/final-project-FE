@@ -25,12 +25,18 @@
   }
 }
 
-@mixin change_theme_btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
+@mixin back_btn {
+  width: auto;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin change_theme_btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,17 +57,6 @@
     width: 60%;
     height: 60%;
   }
-}
-
-@mixin back_btn {
-  width: auto;
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  padding: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 // Inputs

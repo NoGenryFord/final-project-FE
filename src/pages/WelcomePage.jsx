@@ -13,15 +13,21 @@ export const WelcomePage = () => {
 
   return (
     <div className='welcome_page' id='welcomePage'>
-      <div className='welcome_page_container'>
-        <div className='welcome_page_title'>Right Messenger</div>
+      {/* Nav Line */}
+      <nav className='nav_line' id='navLine'>
         {/* Theme switch */}
         <Button className={'btn change_theme_btn'} dataTheme={theme} onClick={toggleTheme}>
           <span className='material-icons'>{theme + '_mode'}</span>
         </Button>
+      </nav>
+
+      <div className='welcome_page_container'>
+        <div className='welcome_page_title'>Right Messenger</div>
+
         <Button className={'btn sign_up_btn'} onClick={() => navigate('/signup')}>
           Sign Up
         </Button>
+
         <Button className={'btn log_in_btn'} onClick={() => navigate('/login')}>
           Log In
         </Button>

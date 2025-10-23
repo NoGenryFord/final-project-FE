@@ -7,7 +7,8 @@
     background-color: $background-color-primary-dark-theme;
     color: $text-color-primary-dark-theme;
 
-    form {
+    form,
+    .nav_line {
       background-color: $background-color-secondary-dark-theme;
       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -46,6 +47,26 @@
 
   background-color: $background-color-primary-light-theme;
   color: $text-color-primary-light-theme;
+
+  .nav_line {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 4%);
+    margin-top: 1%;
+
+    display: flex;
+
+    gap: 20px;
+
+    background-color: $background-color-secondary-light-theme;
+    padding: 10px 15px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+
+    .change_theme_btn {
+      @include change_theme_btn;
+    }
+  }
 
   form {
     @include flex_center;

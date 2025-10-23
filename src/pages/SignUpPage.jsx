@@ -13,10 +13,13 @@ export const SignUpPage = () => {
 
   return (
     <div className='signup_page' id='signupPage'>
-      {/* Theme switch */}
-      <Button className={'btn change_theme_btn'} dataTheme={theme} onClick={toggleTheme}>
-        <span className='material-icons'>{theme + '_mode'}</span>
-      </Button>
+      {/* Nav Line */}
+      <nav className='nav_line' id='navLine'>
+        {/* Theme switch */}
+        <Button className={'btn change_theme_btn'} dataTheme={theme} onClick={toggleTheme}>
+          <span className='material-icons'>{theme + '_mode'}</span>
+        </Button>
+      </nav>
 
       <SignUpForm />
 

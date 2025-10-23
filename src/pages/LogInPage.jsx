@@ -13,10 +13,13 @@ export const LogInPage = () => {
 
   return (
     <div className='login_page' id='loginPage'>
-      {/* Theme switch */}
-      <Button className={'btn change_theme_btn'} dataTheme={theme} onClick={toggleTheme}>
-        <span className='material-icons'>{theme + '_mode'}</span>
-      </Button>
+      {/* Nav Line */}
+      <nav className='nav_line' id='navLine'>
+        {/* Theme switch */}
+        <Button className={'btn change_theme_btn'} dataTheme={theme} onClick={toggleTheme}>
+          <span className='material-icons'>{theme + '_mode'}</span>
+        </Button>
+      </nav>
 
       <LogInForm />
 
