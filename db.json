@@ -23,6 +23,12 @@
       "username": "zelensyy",
       "password": "12345678",
       "isAdmin": false
+    },
+    {
+      "id": "d9b8",
+      "username": "Albert Einstein",
+      "password": "dadada",
+      "isAdmin": false
     }
   ]
 }
