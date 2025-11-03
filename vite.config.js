@@ -20,14 +20,10 @@ export default defineConfig({
   },
 
   server: {
-    host: '0.0.0.0', // allow access from local network interfaces
-    // open: 'http://127.0.0.1:5173', // * open web browser on server up
+    host: '0.0.0.0',
+    port: '5173',
     open: false,
     hmr: true,
-    // {
-    //   host: 'localhost',
-    //   port: 5173,
-    // },
   },
 
   css: {
