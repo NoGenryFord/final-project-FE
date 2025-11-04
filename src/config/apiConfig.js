@@ -13,7 +13,7 @@ const getApiUrls = () => {
 const pingApi = async (url) => {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1000);
+    const timeoutId = setTimeout(() => controller.abort(), 500);
 
     const cleanUrl = url.endsWith('/') ? url.slice(0, -1) : url;
 
