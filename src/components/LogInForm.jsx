@@ -22,14 +22,14 @@ export const LogInForm = () => {
   // Submit form
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      console.log('Form values:', values);
+      // console.log('Form values:', values);
 
       // API Request
       const response = await login(values);
-      console.log('Full response from server:', response);
+      console.log('Successfull response from server:', response.user.username);
 
       if (response.status === 'success') {
-        console.log('Login successful:', response.user);
+        console.log('Login Successfull:', response.user.username);
         setUser(response.user);
         navigate('/messenger');
       } else {
