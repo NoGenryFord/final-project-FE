@@ -30,12 +30,12 @@ export const SignUpForm = () => {
 
   // Submit form
   const handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
-    console.log('Sign Up values before sending:', values);
+    // console.log('Sign Up values before sending:', values); // * LOGS
     setIsLoading(true);
     try {
       // API Request
       const newUser = await register(values);
-      console.log('User successfully created', values);
+      // console.log('User successfully created', values); // * LOGS
 
       // Go to Login page
       navigate('/login');
