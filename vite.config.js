@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   plugins: [react()],
   root: '.',
-  base: './',
+  base: '/final-project-FE/',
   publicDir: 'public',
 
   define: {

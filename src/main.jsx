@@ -9,7 +9,7 @@ import { WebSocketProvider } from './contexts/WebSocketContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/final-project-FE">
       <ThemeProvider>
         <AuthProvider>
           <WebSocketProvider>
