@@ -27,4 +27,6 @@ dist-ssr
 .env
 
 # JSON Storage
-jsonStorage
+jsonStorage.env
+.env.local
+.env*.local
