@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { useAuth } from './AuthContext';
-import { getApiUrl } from '/src/config/apiConfig.js';
 
 const WebSocketContext = createContext();
 
@@ -34,7 +33,13 @@ export const WebSocketProvider = ({ children }) => {
 
   const connectWebSocket = async () => {
     try {
-      const apiUrl = await getApiUrl();
+      // Get API URL directly from environment variable
+      const apiUrl = import.meta.env.VITE_FASTAPI_SERVER;
+      
+      if (!apiUrl) {
+        console.error('VITE_FASTAPI_SERVER is not defined in .env');
+        return;
+      }
 
       const wsBaseUrl = apiUrl
         .replace('http://', 'ws://')
