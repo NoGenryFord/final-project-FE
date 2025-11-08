@@ -10,19 +10,24 @@ export const WebSocketProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false);
   const wsRef = useRef(null);
   const shouldReconnect = useRef(true);
+  const reconnectAttempts = useRef(0);
+  const maxReconnectAttempts = 5; // Maximum 5 reconnection attempts
 
   useEffect(() => {
     if (isAuthenticated && user) {
       console.log('Attempting WebSocket connection for user:', user.username);
       shouldReconnect.current = true;
+      reconnectAttempts.current = 0; // Reset reconnect attempts on new login
       connectWebSocket();
     } else {
       shouldReconnect.current = false;
+      reconnectAttempts.current = 0;
       disconnectWebSocket();
     }
 
     return () => {
       shouldReconnect.current = false;
+      reconnectAttempts.current = 0;
       disconnectWebSocket();
     };
   }, [isAuthenticated, user]);
@@ -44,6 +49,7 @@ export const WebSocketProvider = ({ children }) => {
       wsRef.current.onopen = () => {
         console.log('WebSocket Connected');
         setIsConnected(true);
+        reconnectAttempts.current = 0; // Reset attempts on successful connection
       };
 
       wsRef.current.onmessage = (event) => {
@@ -64,14 +70,24 @@ export const WebSocketProvider = ({ children }) => {
         console.log('WebSocket CLOSED:', event.code, event.reason);
         setIsConnected(false);
 
-        // Option: auto reconnect
+        // Option: auto reconnect with maximum attempts limit
         if (shouldReconnect.current && isAuthenticated && user) {
-          console.log('Attempting to reconnect in 3 seconds...');
-          setTimeout(() => {
-            connectWebSocket();
-          }, 3000);
+          if (reconnectAttempts.current < maxReconnectAttempts) {
+            reconnectAttempts.current += 1;
+            console.log(
+              `Attempting to reconnect in 3 seconds... (Attempt ${reconnectAttempts.current}/${maxReconnectAttempts})`
+            );
+            setTimeout(() => {
+              connectWebSocket();
+            }, 3000);
+          } else {
+            console.warn(
+              `Maximum reconnection attempts (${maxReconnectAttempts}) reached. Giving up.`
+            );
+            shouldReconnect.current = false;
+          }
         } else {
-          console.log('Reconnect disabled (user logged out)');
+          console.log('Reconnect disabled (user logged out or max attempts reached)');
         }
       };
     } catch (error) {
