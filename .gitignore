@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # .env path
-.env
 .env_local
 
 # JSON Storage
