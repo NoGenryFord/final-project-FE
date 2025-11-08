@@ -27,3 +27,4 @@ dist-ssr
 # .env - committed to repo for GitHub Actions workflow
 .env.local
 .env_local
+.env

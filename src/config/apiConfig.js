@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_FASTAPI_SERVER || 'http://localhost:8000';
+
+const api = axios.create({
+  baseURL: API_URL,
+});
+
 // Get list of URLs drom .env
 const getApiUrls = () => {
   const urls = import.meta.env.VITE_FASTAPI_SERVER;
@@ -17,7 +23,7 @@ const pingApi = async (url) => {
 
     const cleanUrl = url.endsWith('/') ? url.slice(0, -1) : url;
 
-    await axios.get(cleanUrl, {
+    await api.get(cleanUrl, {
       signal: controller.signal,
       timeout: 2000,
     });
