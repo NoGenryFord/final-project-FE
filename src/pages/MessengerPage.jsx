@@ -1,5 +1,5 @@
 import { useTheme } from '@contexts/ThemeContext';
-import { Button, ContactCard } from '@components';
+import { Button, ContactCard, MessegesWindow } from '@components';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '/src/contexts/AuthContext';
 import { useWebSocket } from '/src/contexts/WebSocketContext';
@@ -61,7 +61,9 @@ export const MessengerPage = () => {
             onlineUsers.map((user) => <ContactCard key={user.id} userName={user.username} />)
           )}
         </div>
-        <div className='dialog_panel'></div>
+        <div className='dialog_panel'>
+          <MessegesWindow className='messeges_window'></MessegesWindow>
+        </div>
       </main>
     </div>
   );
