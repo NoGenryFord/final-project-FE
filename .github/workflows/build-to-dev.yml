@@ -42,12 +42,20 @@ jobs:
           git checkout --orphan dev
           git reset
 
+          cp dockerfile /tmp/dockerfile
+          cp nginx.conf /tmp/nginx.conf
+          cp .dockerignore /tmp/.dockerignore 2>/dev/null || true
+
           shopt -s extglob
           rm -rf !(dist|.git)
           shopt -u extglob
 
           cp -r dist/* .
           rm -rf dist
+
+          cp /tmp/dockerfile .
+          cp /tmp/nginx.conf .
+          cp /tmp/.dockerignore . 2>/dev/null || true
 
           git add -A
           git commit -m "Build from main@${{ github.sha }}"
