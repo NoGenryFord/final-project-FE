@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_FASTAPI_SERVER || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_FASTAPI_SERVER || '';
 
 const api = axios.create({
   baseURL: API_URL,
 });
 
-// Get list of URLs drom .env
+// Get list of URLs from .env
 const getApiUrls = () => {
   const urls = import.meta.env.VITE_FASTAPI_SERVER;
   if (!urls) {
-    return ['http://localhost:8000'];
+    return [''];
   }
   return urls.split(',').map((url) => url.trim());
 };
