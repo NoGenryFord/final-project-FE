@@ -37,8 +37,8 @@ export const SignUpForm = () => {
       const newUser = await register(values);
       // console.log('User successfully created', values); // * LOGS
 
-      // Go to Login page
-      navigate('/login');
+      // Go to messenger page
+      navigate('/messenger');
 
       resetForm();
     } catch (error) {
