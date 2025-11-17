@@ -135,6 +135,27 @@
 
         .messeges_history {
           flex: 15;
+
+          padding: 10px;
+
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .message {
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+
+            background: var(--btn-bg);
+            color: var(--text-color);
+
+            .message_sender {
+              color: var(--message-secondary-color);
+            }
+            .message_timestamp {
+              color: var(--message-secondary-color);
+            }
+          }
         }
 
         .action_bar {
@@ -203,6 +224,8 @@
     --btn-bg-hover: #{color.adjust($button-background-color-light-theme, $lightness: -10%)};
 
     --box-shadow: #{0px 2px 8px rgba(0, 0, 0, 0.1)};
+
+    --message-secondary-color: #{color.adjust($button-text-color-light-theme, $lightness: -10%)};
   }
 }
 
@@ -214,8 +237,10 @@
 
     --btn-bg: #{$button-background-color-dark-theme};
     --btn-fg: #{$button-text-color-dark-theme};
-    --btn-bg-hover: #{color.adjust($button-background-color-dark-theme, $lightness: 10%)};
+    --btn-bg-hover: #{color.adjust($button-background-color-dark-theme, $lightness: -40%)};
 
     --box-shadow: #{0px 0px 8px rgba(197, 35, 202, 0.4)};
+
+    --message-secondary-color: #{color.adjust($button-text-color-dark-theme, $lightness: -40%)};
   }
 }

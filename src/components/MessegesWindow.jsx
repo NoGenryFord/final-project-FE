@@ -2,19 +2,32 @@ import { Button } from '@components';
 import { useWebSocket } from '@contexts/WebSocketContext';
 import { useAuth } from '@contexts/AuthContext';
 import { useState } from 'react';
+import { useMemo } from 'react';
 
 export const MessegesWindow = ({ selectedContact }) => {
-  const { sendMessage, messages } = useWebSocket();
+  const { sendMessage, messages, onlineUsers } = useWebSocket();
   const { user } = useAuth();
   const [inputValue, setInputValue] = useState('');
 
-  if (!selectedContact) {
-    return (
-      <div className='messeges_window'>
-        <div className='no_contact_selected'>Choose user for communicate</div>
-      </div>
-    );
-  }
+  // Helper usernames map
+  const knownUsersMap = useMemo(() => {
+    const map = new Map();
+    if (user) map.set(user.id, user.username);
+
+    if (selectedContact) map.set(selectedContact.id, selectedContact.username);
+
+    if (Array.isArray(onlineUsers)) {
+      onlineUsers.forEach((user) => {
+        if (user?.id) map.set(user.id, user.username);
+      });
+    }
+    return map;
+  }, [onlineUsers, user, selectedContact]);
+
+  const getUserName = (id) => {
+    if (!id) return 'Unknown';
+    return knownUsersMap.get(id) || `User ${id}`;
+  };
 
   const currentChatMessages = messages.filter(
     (msg) =>
@@ -34,13 +47,28 @@ export const MessegesWindow = ({ selectedContact }) => {
     setInputValue('');
   };
 
+  if (!selectedContact) {
+    return (
+      <div className='messeges_window'>
+        <div className='no_contact_selected'>Choose user for communicate</div>
+      </div>
+    );
+  }
+
   return (
     <div className='messeges_window'>
       <div className='messeges_history'>
         {currentChatMessages.map((msg) => (
           <div key={msg.id} className={`message ${msg.senderId === user.id ? 'sent' : 'received'}`}>
+            <div className='message_sender'>{getUserName(msg.senderId)}</div>
+            <div className='message_timestamp'>
+              {new Date(msg.timestamp).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+              })}
+            </div>
             <div className='message_content'>{msg.content}</div>
-            <div className='message_timestamp'>{new Date(msg.timestamp).toLocaleTimeString()}</div>
           </div>
         ))}
       </div>
