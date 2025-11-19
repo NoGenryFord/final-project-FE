@@ -35,6 +35,22 @@
   background-color: $background-color-primary-light-theme;
   color: $text-color-primary-light-theme;
 
+  font-size: $font-size-large;
+
+  @media (max-width: 767px) {
+  }
+  @media (max-width: 479px) {
+    padding-top: env(safe-area-inset-top, 12px);
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+
+    font-size: $font-size-mobile;
+  }
+
+  .btn {
+    @include btn_style_primary;
+    width: 50%;
+  }
+
   .nav_line {
     position: fixed;
     top: 0;
@@ -49,6 +65,13 @@
     padding: 10px 15px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+
+    @media (max-width: 767px) {
+    }
+    @media (max-width: 479px) {
+      font-size: $font-size-mobile;
+      gap: 10px;
+    }
 
     .change_theme_btn {
       @include change_theme_btn;
@@ -68,13 +91,21 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
 
+    @media (max-width: 767px) {
+    }
+    @media (max-width: 479px) {
+      font-size: $font-size-mobile;
+      width: 90%;
+      gap: 10px;
+
+      .btn {
+        width: 90%;
+      }
+    }
+
     .welcome_page_title {
-      font-size: $font-size-large;
       width: 50%;
       text-align: center;
     }
-  }
-  .btn {
-    @include btn_style_primary;
   }
 }
