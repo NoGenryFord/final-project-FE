@@ -47,7 +47,13 @@ export const WebSocketProvider = ({ children }) => {
       }
 
       const getWebSocketUrl = (apiUrl, userId) => {
-        const url = new URL(apiUrl);
+        let url;
+        try {
+          url = new URL(apiUrl);
+        } catch (e) {
+          url = new URL(apiUrl, window.location.origin);
+        }
+
         url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
         // Fix: construct path separately to avoid URL normalization issues
         const cleanPath = url.pathname.replace(/\/+$/, '');
